@@ -1,0 +1,133 @@
+.site-title img {
+  height: 3rem;
+  width: auto;
+  max-width: none;
+}
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background: #1e1e2e;
+  --foreground: #cdd6f4;
+  --card: #313244;
+  --card-foreground: #cdd6f4;
+  --popover: #313244;
+  --popover-foreground: #cdd6f4;
+  --primary: #cba6f7;
+  --primary-foreground: #1e1e2e;
+  --secondary: #313244;
+  --secondary-foreground: #cdd6f4;
+  --muted: #313244;
+  --muted-foreground: #a6adc8;
+  --accent: #45475a;
+  --accent-foreground: #f5e0dc;
+  --destructive: #f38ba8;
+  --border: #313244;
+  --input: #45475a;
+  --ring: #cba6f7;
+  --code-background: #181825;
+  --mark-background: #45475a;
+  --sl-color-banner-bg: #302d41;
+  --sl-color-banner-border: #cba6f7;
+  --sl-color-accent-low: #302d41;
+  --sl-color-accent: #cba6f7;
+  --sl-color-accent-high: #f5e0dc;
+  --sl-color-white: #cdd6f4;
+  --sl-color-gray-1: #bac2de;
+  --sl-color-gray-2: #a6adc8;
+  --sl-color-gray-3: #9399b2;
+  --sl-color-gray-4: #585b70;
+  --sl-color-gray-5: #45475a;
+  --sl-color-gray-6: #313244;
+  --sl-color-gray-7: #181825;
+  --sl-color-black: #1e1e2e;
+  --sl-color-text: #cdd6f4;
+  --sl-color-text-accent: #cba6f7;
+  --sl-color-bg: #1e1e2e;
+  --sl-color-bg-nav: #181825;
+  --sl-color-bg-sidebar: #181825;
+  --sl-color-bg-inline-code: #313244;
+  --sl-color-hairline: #313244;
+  --sl-color-hairline-light: #45475a;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --background: #eff1f5;
+  --foreground: #4c4f69;
+  --card: #e6e9ef;
+  --card-foreground: #4c4f69;
+  --popover: #e6e9ef;
+  --popover-foreground: #4c4f69;
+  --primary: #8839ef;
+  --primary-foreground: #eff1f5;
+  --secondary: #ccd0da;
+  --secondary-foreground: #4c4f69;
+  --muted: #ccd0da;
+  --muted-foreground: #6c6f85;
+  --accent: #bcc0cc;
+  --accent-foreground: #4c4f69;
+  --destructive: #d20f39;
+  --border: #ccd0da;
+  --input: #bcc0cc;
+  --ring: #8839ef;
+  --code-background: #e6e9ef;
+  --mark-background: #ccd0da;
+  --sl-color-banner-bg: #e6e0f8;
+  --sl-color-banner-border: #8839ef;
+  --sl-color-accent-low: #e6e0f8;
+  --sl-color-accent: #8839ef;
+  --sl-color-accent-high: #4c4f69;
+  --sl-color-white: #4c4f69;
+  --sl-color-gray-1: #5c5f77;
+  --sl-color-gray-2: #6c6f85;
+  --sl-color-gray-3: #7c7f93;
+  --sl-color-gray-4: #acb0be;
+  --sl-color-gray-5: #bcc0cc;
+  --sl-color-gray-6: #ccd0da;
+  --sl-color-gray-7: #e6e9ef;
+  --sl-color-black: #eff1f5;
+  --sl-color-text: #4c4f69;
+  --sl-color-text-accent: #8839ef;
+  --sl-color-bg: #eff1f5;
+  --sl-color-bg-nav: #e6e9ef;
+  --sl-color-bg-sidebar: #e6e9ef;
+  --sl-color-bg-inline-code: #ccd0da;
+  --sl-color-hairline: #ccd0da;
+  --sl-color-hairline-light: #bcc0cc;
+}
+
+body {
+  background: var(--sl-color-bg);
+}
+
+header.header,
+.sidebar-pane {
+  background: var(--sl-color-bg-nav);
+}
+
+.right-sidebar,
+.content-panel {
+  border-color: var(--sl-color-hairline-light);
+}
+
+.mermaid {
+  margin-block: 1.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  background: var(--sl-color-gray-6);
+}
+
+:root[data-theme='light'] .mermaid {
+  border-color: var(--sl-color-gray-5);
+  background: var(--sl-color-gray-7);
+}
+
+.mermaid svg {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  margin-inline: auto;
+}

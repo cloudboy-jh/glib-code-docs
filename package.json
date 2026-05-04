@@ -1,0 +1,19 @@
+{
+  "name": "glib-code-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "latest",
+    "astro": "latest",
+    "mermaid": "latest",
+    "starlight-theme-black": "latest"
+  },
+  "devDependencies": {}
+}
