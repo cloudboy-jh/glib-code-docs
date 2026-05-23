@@ -114,12 +114,10 @@ header.header,
 .mermaid {
   margin-block: 1.5rem;
   padding: 1rem;
-  overflow-x: auto;
+  overflow: auto;
   border: 1px solid var(--sl-color-gray-5);
   border-radius: 0.75rem;
   background: var(--sl-color-gray-6);
-  display: grid;
-  justify-items: center;
 }
 
 :root[data-theme='light'] .mermaid {
@@ -129,8 +127,9 @@ header.header,
 
 .mermaid svg {
   display: block;
-  inline-size: min(100%, 1040px) !important;
-  max-inline-size: none;
+  inline-size: max-content !important;
+  min-inline-size: 100%;
+  max-inline-size: none !important;
   block-size: auto !important;
   margin-inline: auto;
 }
@@ -138,10 +137,5 @@ header.header,
 @media (max-width: 900px) {
   .mermaid {
     padding: 0.75rem;
-  }
-
-  .mermaid svg {
-    inline-size: max-content !important;
-    min-inline-size: 100%;
   }
 }
