@@ -118,8 +118,8 @@ header.header,
   border: 1px solid var(--sl-color-gray-5);
   border-radius: 0.75rem;
   background: var(--sl-color-gray-6);
-  display: flex;
-  justify-content: center;
+  cursor: grab;
+  touch-action: none;
 }
 
 :root[data-theme='light'] .mermaid {
@@ -129,10 +129,14 @@ header.header,
 
 .mermaid svg {
   display: block;
-  inline-size: 100% !important;
-  max-inline-size: 100% !important;
-  block-size: auto !important;
-  margin-inline: auto;
+  inline-size: max-content;
+  max-inline-size: none;
+  block-size: auto;
+  margin: 0;
+}
+
+.mermaid.is-dragging {
+  cursor: grabbing;
 }
 
 @media (max-width: 900px) {

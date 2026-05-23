@@ -90,6 +90,83 @@ function currentTheme() {
   return document.documentElement.dataset.theme === 'light' ? themes.latte : themes.mocha
 }
 
+function mountMermaidCanvas(diagram) {
+  const svg = diagram.querySelector('svg')
+  if (!svg) return
+
+  svg.removeAttribute('width')
+  svg.removeAttribute('height')
+  svg.style.transformOrigin = '0 0'
+
+  let scale = 1
+  let x = 0
+  let y = 0
+  let dragging = false
+  let lastX = 0
+  let lastY = 0
+
+  function paint() {
+    svg.style.transform = 'translate(' + x + 'px, ' + y + 'px) scale(' + scale + ')'
+  }
+
+  function reset() {
+    scale = 1
+    x = 0
+    y = 0
+    paint()
+  }
+
+  diagram.addEventListener('wheel', (event) => {
+    event.preventDefault()
+    const rect = diagram.getBoundingClientRect()
+    const cursorX = event.clientX - rect.left
+    const cursorY = event.clientY - rect.top
+
+    const factor = event.deltaY < 0 ? 1.08 : 0.92
+    const nextScale = Math.min(4, Math.max(0.4, scale * factor))
+    if (nextScale === scale) return
+
+    const worldX = (cursorX - x) / scale
+    const worldY = (cursorY - y) / scale
+    scale = nextScale
+    x = cursorX - worldX * scale
+    y = cursorY - worldY * scale
+    paint()
+  }, { passive: false })
+
+  diagram.addEventListener('pointerdown', (event) => {
+    dragging = true
+    lastX = event.clientX
+    lastY = event.clientY
+    diagram.setPointerCapture(event.pointerId)
+    diagram.classList.add('is-dragging')
+  })
+
+  diagram.addEventListener('pointermove', (event) => {
+    if (!dragging) return
+    const dx = event.clientX - lastX
+    const dy = event.clientY - lastY
+    lastX = event.clientX
+    lastY = event.clientY
+    x += dx
+    y += dy
+    paint()
+  })
+
+  function stopDragging(event) {
+    if (!dragging) return
+    dragging = false
+    diagram.classList.remove('is-dragging')
+    if (event) diagram.releasePointerCapture(event.pointerId)
+  }
+
+  diagram.addEventListener('pointerup', stopDragging)
+  diagram.addEventListener('pointercancel', stopDragging)
+  diagram.addEventListener('dblclick', reset)
+
+  paint()
+}
+
 async function renderMermaid() {
   const diagrams = [...document.querySelectorAll('.mermaid')]
   if (diagrams.length === 0) return
@@ -113,6 +190,7 @@ async function renderMermaid() {
       const id = 'glib-mermaid-' + index + '-' + Date.now().toString(36)
       const { svg } = await mermaid.render(id, source)
       diagram.innerHTML = svg
+      mountMermaidCanvas(diagram)
     } catch (error) {
       console.error('Mermaid render failed', { source, error })
       diagram.textContent = source
