@@ -1,47 +1,51 @@
 ---
 title: Providers
-description: API reference for provider configuration and model access.
+description: Provider endpoints for listing providers and managing auth/defaults.
 ---
 
-Provider APIs define the available model backends for agent sessions.
+## Endpoints
 
-## Resource shape
+- `GET /api/providers`
+- `PATCH /api/providers/defaults`
+- `POST /api/providers/:id/auth`
+- `DELETE /api/providers/:id/auth`
 
-```ts
-type Provider = {
-  id: string
-  label: string
-  models: Model[]
-  enabled: boolean
-}
-
-type Model = {
-  id: string
-  label: string
-  capabilities: string[]
-}
-```
-
-## Common operations
-
-- List enabled providers.
-- List models for a provider.
-- Validate a provider/model pair before session creation.
-- Record provider/model choice on the session.
-
-## Flow
+## API domain map
 
 ```mermaid
-flowchart LR
-  List["List providers"] --> Select["Select model"]
-  Select --> Validate["Validate policy"]
-  Validate --> Session["Create session"]
+flowchart TD
+  API["/api"] --> Providers["providers"]
+  API --> Agent["agent"]
+  API --> Sessions["sessions"]
+  API --> Diff["diff"]
 
-  classDef read fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
-  classDef policy fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
-  classDef core fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
+  Providers --> P1["GET /api/providers"]
+  Providers --> P2["PATCH /api/providers/defaults"]
+  Providers --> P3["POST /api/providers/:id/auth"]
+  Providers --> P4["DELETE /api/providers/:id/auth"]
 
-  class List,Select read
-  class Validate policy
-  class Session core
+  Agent --> A1["POST /api/agent/sessions"]
+  Agent --> A2["POST /api/agent/sessions/:id/send"]
+  Agent --> A3["GET /api/agent/sessions/:id/stream"]
+  Agent --> A4["DELETE /api/agent/sessions/:id/turn"]
+  Agent --> A5["DELETE /api/agent/sessions/:id"]
+
+  Sessions --> S1["GET /api/sessions"]
+  Sessions --> S2["GET /api/sessions/:id"]
+  Sessions --> S3["GET /api/sessions/:id/diff"]
+  Sessions --> S4["POST /api/sessions/:id/promote"]
+
+  Diff --> D1["GET /api/diff/sources"]
+  Diff --> D2["GET /api/diff/items"]
+  Diff --> D3["GET /api/diff/files"]
+  Diff --> D4["GET /api/diff/hunks"]
+  Diff --> D5["POST /api/diff/pack"]
+
+  classDef root fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
+  classDef group fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
+  classDef endpoint fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
+
+  class API root
+  class Providers,Agent,Sessions,Diff group
+  class P1,P2,P3,P4,A1,A2,A3,A4,A5,S1,S2,S3,S4,D1,D2,D3,D4,D5 endpoint
 ```

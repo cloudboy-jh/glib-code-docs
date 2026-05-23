@@ -1,25 +1,23 @@
 ---
 title: Desktop
-description: The glib-code desktop surface for local project workflows.
+description: Electron shell wrapping web/server workflow with native integrations.
 ---
 
-The desktop surface connects local projects to the review-first glib-code workflow. It is for developers who want agent sessions close to their local workspace without giving the agent unrestricted write access.
+Electron shell wrapping web/server workflow with native integrations (for example, folder picker).
 
-## What it should do
+## Focus
 
-- Detect and register local projects.
-- Start sessions from a selected workspace.
-- Display local-aware review state.
-- Promote accepted changes into the local project.
-- Keep server/provider settings visible.
+- local project selection
+- native filesystem affordances
+- same review-first/promotion workflow as web
 
 ```mermaid
 flowchart TD
-  Local["Local project"] --> Desktop["Desktop app"]
-  Desktop --> Server["glib-code server"]
+  Local["Local project"] --> Desktop["Desktop"]
+  Desktop --> Server["Server"]
   Server --> Session["Agent session"]
   Session --> Diff["Review diff"]
-  Diff --> Promote["Promote locally"]
+  Diff --> Promote["Promote approved files"]
   Promote --> Local
 
   classDef local fill:#a6e3a1,stroke:#94e2d5,color:#11111b,stroke-width:2px
@@ -32,7 +30,3 @@ flowchart TD
   class Server,Session core
   class Diff review
 ```
-
-## Desktop invariant
-
-The desktop app can be close to the filesystem, but the review gate still has to stay in front of promotion.

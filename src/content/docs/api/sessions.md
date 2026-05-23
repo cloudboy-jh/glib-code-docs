@@ -1,31 +1,16 @@
 ---
 title: Sessions
-description: API reference for session lifecycle and state.
+description: Session listing, detail, diff, and promote endpoints.
 ---
 
-Session APIs create, inspect, and manage agent work sessions.
+## Endpoints
 
-## Resource shape
+- `GET /api/sessions`
+- `GET /api/sessions/:id?projectPath=...`
+- `GET /api/sessions/:id/diff?projectPath=...`
+- `POST /api/sessions/:id/promote?projectPath=...`
 
-```ts
-type Session = {
-  id: string
-  status: 'created' | 'running' | 'reviewable' | 'promoted' | 'rejected'
-  providerId: string
-  modelId: string
-  projectId: string
-  createdAt: string
-  updatedAt: string
-}
-```
-
-## Common operations
-
-- Create a session.
-- Get session status.
-- List session events.
-- Request revision.
-- Mark review decision.
+Session timeline includes user turns, assistant output, tool calls, errors, and lifecycle events.
 
 ## State flow
 

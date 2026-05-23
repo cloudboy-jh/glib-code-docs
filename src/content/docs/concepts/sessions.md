@@ -1,22 +1,33 @@
 ---
 title: Sessions
-description: How glib-code groups agent activity, context, and generated changes.
+description: Session is the unit of agent work plus timeline and isolated workspace mapping.
 ---
 
-A session is the unit of agent work in glib-code. It ties together the prompt, selected provider/model, workspace boundary, generated changes, review state, and promotion result.
+Session = unit of agent work + timeline + isolated workspace mapping.
 
-## Lifecycle
+Current behavior:
+
+- create: `POST /api/agent/sessions`
+- send: `POST /api/agent/sessions/:id/send`
+- stream: `GET /api/agent/sessions/:id/stream`
+- abort: `DELETE /api/agent/sessions/:id/turn`
+- delete: `DELETE /api/agent/sessions/:id`
+
+Session timeline includes user turns, assistant output, tool calls, errors, and turn lifecycle events.
+
+## Session lifecycle
 
 ```mermaid
 stateDiagram-v2
   [*] --> Created
-  Created --> Running: start agent
-  Running --> Reviewable: diff ready
-  Reviewable --> Promoted: accepted
+  Created --> Running: send turn
+  Running --> Streaming: stream events
+  Streaming --> Reviewable: diff materialized
   Reviewable --> Running: revise
-  Reviewable --> Rejected: discard
+  Reviewable --> Promoted: promote accepted files
+  Running --> Aborted: abort turn
   Promoted --> [*]
-  Rejected --> [*]
+  Aborted --> [*]
 
   classDef created fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
   classDef active fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
@@ -26,20 +37,7 @@ stateDiagram-v2
 
   class Created created
   class Running active
-  class Reviewable review
+  class Streaming,Reviewable review
   class Promoted done
-  class Rejected bad
+  class Aborted bad
 ```
-
-## What belongs in a session
-
-- The user task and current prompt trail.
-- Provider/model authority for the run.
-- Project identity and baseline reference.
-- Generated file changes.
-- Review status.
-- Promotion metadata.
-
-## Why sessions matter
-
-Sessions make generated work auditable. Instead of asking “what did the agent just do to my repo,” you can inspect one bounded unit of work and decide what happens next.

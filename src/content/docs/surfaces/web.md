@@ -1,39 +1,31 @@
 ---
 title: Web
-description: The glib-code web surface for managing agent sessions and review flows.
+description: Vue/Vite surface for project picker, diff workbench, sessions, and promote UI.
 ---
 
-The web surface is the browser UI for managing sessions, reviewing diffs, and promoting accepted work.
+Vue/Vite app for project picker, diff workbench, sessions, and promote UI.
 
-## What it owns
+## Key UX points
 
-- Starting and resuming sessions.
-- Showing agent progress.
-- Rendering reviewable diffs.
-- Capturing accept/reject decisions.
-- Calling server APIs for promotion.
+- mode selection on project open (Diffs vs Session)
+- inline mode cards in recent projects
+- typed tool-call rendering in timeline
+- diff rendering through Pierre (`@pierre/diffs`)
+- in-app destructive confirmations (session delete)
 
 ```mermaid
-flowchart TD
-  Browser["Browser"] --> Sessions["Session list"]
-  Browser --> Review["Diff review"]
-  Review --> Decision{"Accept changes?"}
-  Decision -->|Yes| Promote["Promote request"]
-  Decision -->|No| Revise["Ask agent to revise"]
-  Promote --> Server["glib-code server"]
-  Revise --> Server
+flowchart LR
+  User["Developer"] --> Web["Web"]
+  Web --> Server["Server"]
+  Server --> Web
+  Web --> Review["Diff review + promote UI"]
 
   classDef ui fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
   classDef review fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
   classDef server fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
   classDef safe fill:#a6e3a1,stroke:#94e2d5,color:#11111b,stroke-width:2px
 
-  class Browser,Sessions ui
-  class Review,Decision review
+  class User,Web ui
+  class Review review
   class Server server
-  class Promote,Revise safe
 ```
-
-## Design rule
-
-The web app should make the review gate obvious. If the user cannot tell whether work has been promoted, the UI is wrong.

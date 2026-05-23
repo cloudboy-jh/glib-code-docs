@@ -172,7 +172,7 @@ export default defineConfig({
       sidebar: [
         { label: 'Introduction', link: '/' },
         { label: 'Why glib-code', link: '/why/' },
-        { label: 'Getting Started', link: '/guides/getting-started/' },
+        { label: 'Getting Started', link: '/getting-started/' },
         {
           label: 'Concepts',
           items: [

@@ -1,20 +1,15 @@
 ---
 title: Agent
-description: API reference for starting and managing agent work.
+description: Agent session creation, turns, streaming, abort, and delete endpoints.
 ---
 
-Agent APIs run the work that produces reviewable session output.
+## Endpoints
 
-## Run shape
-
-```ts
-type AgentRun = {
-  sessionId: string
-  prompt: string
-  providerId: string
-  modelId: string
-}
-```
+- `POST /api/agent/sessions`
+- `POST /api/agent/sessions/:id/send`
+- `GET /api/agent/sessions/:id/stream?projectPath=...&replay=...`
+- `DELETE /api/agent/sessions/:id/turn?projectPath=...`
+- `DELETE /api/agent/sessions/:id`
 
 ## Runtime states
 
@@ -40,4 +35,4 @@ stateDiagram-v2
 
 ## Output
 
-The agent should produce session output, logs/events, and a diff. It should not directly mutate durable project state.
+The agent emits timeline events, tool calls, and diff-producing output for review. Durable mutation happens only through promote.

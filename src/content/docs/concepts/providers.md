@@ -1,20 +1,25 @@
 ---
 title: Provider/model authority
-description: How glib-code handles provider and model selection boundaries.
+description: Provider/model capabilities come from runtime truth, not static UI catalogs.
 ---
 
-Provider and model authority controls which agent backend is allowed to run a session. The selected provider and model are part of the session boundary, not a hidden global side effect.
+Design rules:
 
-## Authority flow
+- provider auth is app-managed
+- model availability reflects runtime truth
+- missing auth blocks agent execution, not project/diff browsing
+
+## Authority decision flow
 
 ```mermaid
 flowchart LR
-  User["User selects model"] --> Policy["Provider policy"]
-  Policy --> Allowed{"Allowed?"}
-  Allowed -->|Yes| Session["Create session"]
-  Allowed -->|No| Block["Block run"]
+  UI["User picks provider/model"] --> Runtime["Runtime capabilities (pi)"]
+  Runtime --> Auth{"Provider auth present?"}
+  Auth -->|No| Block["Block agent execution"]
+  Auth -->|Yes| Session["Create/start session"]
   Session --> Provider["Provider API"]
-  Provider --> Agent["Agent output"]
+  Provider --> Output["Agent output"]
+  UI --> Browse["Project/diff browsing"]
 
   classDef input fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
   classDef policy fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
@@ -22,19 +27,8 @@ flowchart LR
   classDef bad fill:#f38ba8,stroke:#eba0ac,color:#11111b,stroke-width:2px
   classDef core fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
 
-  class User input
-  class Policy,Allowed policy
-  class Session,Provider,Agent core
+  class UI,Browse input
+  class Runtime,Auth policy
+  class Session,Provider,Output core
   class Block bad
 ```
-
-## Why it exists
-
-- Different models have different cost, latency, and quality profiles.
-- Some tasks should only run on approved providers.
-- Session records should show which backend produced the work.
-- Provider permissions should be enforceable before execution.
-
-## Practical rule
-
-If a model choice affects output, cost, permissions, or auditability, it belongs in the session record.

@@ -1,21 +1,15 @@
 ---
 title: Diff
-description: API reference for generated changes and reviewable diffs.
+description: Diff source, items, files, hunks, and pack endpoints.
 ---
 
-Diff APIs expose generated changes for review and promotion.
+## Endpoints
 
-## Resource shape
-
-```ts
-type DiffSummary = {
-  sessionId: string
-  filesChanged: number
-  additions: number
-  deletions: number
-  status: 'pending-review' | 'accepted' | 'rejected'
-}
-```
+- `GET /api/diff/sources`
+- `GET /api/diff/items`
+- `GET /api/diff/files`
+- `GET /api/diff/hunks`
+- `POST /api/diff/pack`
 
 ## Review data
 
