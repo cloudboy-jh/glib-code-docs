@@ -1,4 +1,4 @@
-# glib-code docs
+# glib-code Documentation
 
 Documentation site for glib-code, built with Astro + Starlight and themed with Catppuccin.
 
