@@ -272,10 +272,16 @@ export default defineConfig({
         {
           label: 'API Reference',
           items: [
+            { label: 'Readiness & Health', link: '/api/readiness/' },
             { label: 'Providers', link: '/api/providers/' },
+            { label: 'Projects', link: '/api/projects/' },
             { label: 'Agent', link: '/api/agent/' },
             { label: 'Sessions', link: '/api/sessions/' },
             { label: 'Diff', link: '/api/diff/' },
+            { label: 'Git', link: '/api/git/' },
+            { label: 'Settings', link: '/api/settings/' },
+            { label: 'Attachments', link: '/api/attachments/' },
+            { label: 'Terminal', link: '/api/terminal/' },
           ],
         },
         {
