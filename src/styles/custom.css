@@ -120,12 +120,13 @@ header.header,
   background: var(--sl-color-gray-6);
   cursor: grab;
   touch-action: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .mermaid:hover {
   border-color: var(--sl-color-accent);
-  box-shadow: 0 0 0 1px var(--sl-color-accent);
+  box-shadow: 0 0 0 1px var(--sl-color-accent), 0 8px 24px rgba(203, 166, 247, 0.15);
+  transform: translateY(-2px);
 }
 
 :root[data-theme='light'] .mermaid {
