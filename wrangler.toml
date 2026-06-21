@@ -1,7 +1,3 @@
 name = "glib-code-docs"
 pages_build_output_dir = "dist"
 compatibility_date = "2026-05-04"
-
-[build]
-command = "npm run build"
-cwd = "."
