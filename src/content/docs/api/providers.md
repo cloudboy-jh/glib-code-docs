@@ -41,9 +41,9 @@ flowchart TD
   Diff --> D4["GET /api/diff/hunks"]
   Diff --> D5["POST /api/diff/pack"]
 
-  classDef root fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
-  classDef group fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
-  classDef endpoint fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
+  classDef root fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef group fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef endpoint fill:#5a5a5a,stroke:#d4d4d4,color:#f2f2f2,stroke-width:2px
 
   class API root
   class Providers,Agent,Sessions,Diff group

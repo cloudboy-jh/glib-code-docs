@@ -27,11 +27,11 @@ flowchart LR
   Review --> Promote["Promoted"]
   Review --> Reject["Rejected"]
 
-  classDef start fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
-  classDef active fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
-  classDef review fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
-  classDef done fill:#a6e3a1,stroke:#94e2d5,color:#11111b,stroke-width:2px
-  classDef bad fill:#f38ba8,stroke:#eba0ac,color:#11111b,stroke-width:2px
+  classDef start fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef active fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef review fill:#5a5a5a,stroke:#d4d4d4,color:#f2f2f2,stroke-width:2px
+  classDef done fill:#4a5a2a,stroke:#8aaa4a,color:#f2f2f2,stroke-width:2px
+  classDef bad fill:#5a2a2a,stroke:#aa6a6a,color:#f2f2f2,stroke-width:2px
 
   class Create start
   class Run active

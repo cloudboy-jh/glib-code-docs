@@ -30,9 +30,9 @@ flowchart TD
   Files --> Review
   Review --> Decision["Decision"]
 
-  classDef generated fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
-  classDef diff fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
-  classDef review fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
+  classDef generated fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef diff fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef review fill:#5a5a5a,stroke:#d4d4d4,color:#f2f2f2,stroke-width:2px
 
   class Output,Normalize generated
   class Summary,Files diff

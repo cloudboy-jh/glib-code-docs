@@ -3,9 +3,9 @@ import starlight from '@astrojs/starlight'
 import starlightThemeBlack from 'starlight-theme-black'
 import mermaidCodeBlocks from './src/mermaid/rehype-mermaid.mjs'
 
-function catppuccinMermaid() {
+function minimalMermaid() {
   return {
-    name: 'catppuccin-mermaid',
+    name: 'minimal-mermaid',
     hooks: {
       'astro:config:setup': ({ injectScript }) => {
         injectScript(
@@ -13,81 +13,83 @@ function catppuccinMermaid() {
           `
 import mermaid from 'mermaid'
 
+// In-house theme palettes. Mirror shared/src/theme/presets.ts token HSL
+// triplets; rendered as hsl() strings so they stay in sync with the CSS vars.
 const themes = {
-  mocha: {
-    background: '#1e1e2e',
-    mainBkg: '#313244',
-    secondBkg: '#45475a',
-    tertiaryBkg: '#181825',
-    primaryColor: '#313244',
-    primaryTextColor: '#cdd6f4',
-    primaryBorderColor: '#cba6f7',
-    secondaryColor: '#45475a',
-    secondaryTextColor: '#cdd6f4',
-    secondaryBorderColor: '#89b4fa',
-    tertiaryColor: '#181825',
-    tertiaryTextColor: '#cdd6f4',
-    tertiaryBorderColor: '#f5c2e7',
-    lineColor: '#cba6f7',
-    textColor: '#cdd6f4',
+  'minimal-dark': {
+    background: 'hsl(0 0% 9%)',
+    mainBkg: 'hsl(0 0% 12%)',
+    secondBkg: 'hsl(0 0% 15%)',
+    tertiaryBkg: 'hsl(0 0% 9%)',
+    primaryColor: 'hsl(0 0% 12%)',
+    primaryTextColor: 'hsl(0 0% 95%)',
+    primaryBorderColor: 'hsl(0 0% 70%)',
+    secondaryColor: 'hsl(0 0% 15%)',
+    secondaryTextColor: 'hsl(0 0% 95%)',
+    secondaryBorderColor: 'hsl(0 0% 65%)',
+    tertiaryColor: 'hsl(0 0% 9%)',
+    tertiaryTextColor: 'hsl(0 0% 95%)',
+    tertiaryBorderColor: 'hsl(0 0% 42%)',
+    lineColor: 'hsl(0 0% 70%)',
+    textColor: 'hsl(0 0% 95%)',
     fontFamily: 'var(--sl-font-system)',
-    clusterBkg: '#181825',
-    clusterBorder: '#585b70',
-    edgeLabelBackground: '#1e1e2e',
-    nodeBorder: '#cba6f7',
-    actorBkg: '#313244',
-    actorBorder: '#cba6f7',
-    actorTextColor: '#cdd6f4',
-    labelBoxBkgColor: '#313244',
-    labelBoxBorderColor: '#cba6f7',
-    labelTextColor: '#cdd6f4',
-    loopTextColor: '#cdd6f4',
-    noteBkgColor: '#f9e2af',
-    noteTextColor: '#11111b',
-    noteBorderColor: '#fab387',
-    activationBkgColor: '#45475a',
-    activationBorderColor: '#cba6f7',
-    sequenceNumberColor: '#1e1e2e',
+    clusterBkg: 'hsl(0 0% 9%)',
+    clusterBorder: 'hsl(0 0% 25%)',
+    edgeLabelBackground: 'hsl(0 0% 9%)',
+    nodeBorder: 'hsl(0 0% 70%)',
+    actorBkg: 'hsl(0 0% 12%)',
+    actorBorder: 'hsl(0 0% 70%)',
+    actorTextColor: 'hsl(0 0% 95%)',
+    labelBoxBkgColor: 'hsl(0 0% 12%)',
+    labelBoxBorderColor: 'hsl(0 0% 70%)',
+    labelTextColor: 'hsl(0 0% 95%)',
+    loopTextColor: 'hsl(0 0% 95%)',
+    noteBkgColor: 'hsl(0 0% 15%)',
+    noteTextColor: 'hsl(0 0% 95%)',
+    noteBorderColor: 'hsl(0 0% 70%)',
+    activationBkgColor: 'hsl(0 0% 15%)',
+    activationBorderColor: 'hsl(0 0% 70%)',
+    sequenceNumberColor: 'hsl(0 0% 9%)',
   },
-  latte: {
-    background: '#eff1f5',
-    mainBkg: '#e6e9ef',
-    secondBkg: '#dce0e8',
-    tertiaryBkg: '#ccd0da',
-    primaryColor: '#e6e9ef',
-    primaryTextColor: '#4c4f69',
-    primaryBorderColor: '#8839ef',
-    secondaryColor: '#dce0e8',
-    secondaryTextColor: '#4c4f69',
-    secondaryBorderColor: '#1e66f5',
-    tertiaryColor: '#ccd0da',
-    tertiaryTextColor: '#4c4f69',
-    tertiaryBorderColor: '#ea76cb',
-    lineColor: '#8839ef',
-    textColor: '#4c4f69',
+  'minimal-paper': {
+    background: 'hsl(51 33% 92%)',
+    mainBkg: 'hsl(48 100% 97%)',
+    secondBkg: 'hsl(51 21% 88%)',
+    tertiaryBkg: 'hsl(51 33% 92%)',
+    primaryColor: 'hsl(48 100% 97%)',
+    primaryTextColor: 'hsl(0 3% 6%)',
+    primaryBorderColor: 'hsl(0 3% 6%)',
+    secondaryColor: 'hsl(51 21% 88%)',
+    secondaryTextColor: 'hsl(0 3% 6%)',
+    secondaryBorderColor: 'hsl(45 2% 33%)',
+    tertiaryColor: 'hsl(51 33% 92%)',
+    tertiaryTextColor: 'hsl(0 3% 6%)',
+    tertiaryBorderColor: 'hsl(55 10% 79%)',
+    lineColor: 'hsl(0 3% 6%)',
+    textColor: 'hsl(0 3% 6%)',
     fontFamily: 'var(--sl-font-system)',
-    clusterBkg: '#e6e9ef',
-    clusterBorder: '#9ca0b0',
-    edgeLabelBackground: '#eff1f5',
-    nodeBorder: '#8839ef',
-    actorBkg: '#e6e9ef',
-    actorBorder: '#8839ef',
-    actorTextColor: '#4c4f69',
-    labelBoxBkgColor: '#e6e9ef',
-    labelBoxBorderColor: '#8839ef',
-    labelTextColor: '#4c4f69',
-    loopTextColor: '#4c4f69',
-    noteBkgColor: '#df8e1d',
-    noteTextColor: '#eff1f5',
-    noteBorderColor: '#fe640b',
-    activationBkgColor: '#dce0e8',
-    activationBorderColor: '#8839ef',
-    sequenceNumberColor: '#eff1f5',
+    clusterBkg: 'hsl(48 100% 97%)',
+    clusterBorder: 'hsl(55 10% 79%)',
+    edgeLabelBackground: 'hsl(51 33% 92%)',
+    nodeBorder: 'hsl(0 3% 6%)',
+    actorBkg: 'hsl(48 100% 97%)',
+    actorBorder: 'hsl(0 3% 6%)',
+    actorTextColor: 'hsl(0 3% 6%)',
+    labelBoxBkgColor: 'hsl(48 100% 97%)',
+    labelBoxBorderColor: 'hsl(0 3% 6%)',
+    labelTextColor: 'hsl(0 3% 6%)',
+    loopTextColor: 'hsl(0 3% 6%)',
+    noteBkgColor: 'hsl(51 21% 88%)',
+    noteTextColor: 'hsl(0 3% 6%)',
+    noteBorderColor: 'hsl(0 3% 6%)',
+    activationBkgColor: 'hsl(51 21% 88%)',
+    activationBorderColor: 'hsl(0 3% 6%)',
+    sequenceNumberColor: 'hsl(51 33% 92%)',
   },
 }
 
 function currentTheme() {
-  return document.documentElement.dataset.theme === 'light' ? themes.latte : themes.mocha
+  return document.documentElement.dataset.theme === 'light' ? themes['minimal-paper'] : themes['minimal-dark']
 }
 
 function mountMermaidCanvas(diagram) {
@@ -225,7 +227,7 @@ export default defineConfig({
     rehypePlugins: [mermaidCodeBlocks],
   },
   integrations: [
-    catppuccinMermaid(),
+    minimalMermaid(),
     starlight({
       title: 'glib-code',
       logo: {
@@ -240,7 +242,7 @@ export default defineConfig({
         { icon: 'github', label: 'GitHub', href: 'https://github.com/cloudboy-jh/glib-code' },
       ],
       expressiveCode: {
-        themes: ['catppuccin-mocha', 'catppuccin-latte'],
+        themes: ['github-dark', 'github-light'],
       },
       plugins: [
         starlightThemeBlack({
@@ -296,6 +298,12 @@ export default defineConfig({
           items: [
             { label: 'Run locally', link: '/guides/run-locally/' },
             { label: 'GitTrix integration', link: '/guides/gittrix-integration/' },
+          ],
+        },
+        {
+          label: 'Reference',
+          items: [
+            { label: 'In-House Themes', link: '/reference/in-house-themes/' },
           ],
         },
       ],

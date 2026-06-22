@@ -20,10 +20,10 @@ flowchart LR
   Server --> Web
   Web --> Review["Diff review + promote UI"]
 
-  classDef ui fill:#89b4fa,stroke:#74c7ec,color:#11111b,stroke-width:2px
-  classDef review fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
-  classDef server fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
-  classDef safe fill:#a6e3a1,stroke:#94e2d5,color:#11111b,stroke-width:2px
+  classDef ui fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef review fill:#5a5a5a,stroke:#d4d4d4,color:#f2f2f2,stroke-width:2px
+  classDef server fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef safe fill:#4a5a2a,stroke:#8aaa4a,color:#f2f2f2,stroke-width:2px
 
   class User,Web ui
   class Review review

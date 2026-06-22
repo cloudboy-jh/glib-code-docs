@@ -24,8 +24,8 @@ flowchart LR
   Repo --> Mess["Mixed changes"]
   Mess --> Cleanup["Manual cleanup"]
 
-  classDef bad fill:#f38ba8,stroke:#eba0ac,color:#11111b,stroke-width:2px
-  classDef neutral fill:#9399b2,stroke:#bac2de,color:#11111b,stroke-width:2px
+  classDef bad fill:#5a2a2a,stroke:#aa6a6a,color:#f2f2f2,stroke-width:2px
+  classDef neutral fill:#4a4a4a,stroke:#a6a6a6,color:#f2f2f2,stroke-width:2px
 
   class Agent,Repo,Mess,Cleanup bad
   class Prompt neutral
@@ -44,10 +44,10 @@ flowchart LR
   Decision -->|No| Revise["Revise or discard"]
   Promote --> Repo["Real repo"]
 
-  classDef core fill:#cba6f7,stroke:#f5c2e7,color:#11111b,stroke-width:2px
-  classDef review fill:#f9e2af,stroke:#fab387,color:#11111b,stroke-width:2px
-  classDef safe fill:#a6e3a1,stroke:#94e2d5,color:#11111b,stroke-width:2px
-  classDef discard fill:#9399b2,stroke:#bac2de,color:#11111b,stroke-width:2px
+  classDef core fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef review fill:#5a5a5a,stroke:#d4d4d4,color:#f2f2f2,stroke-width:2px
+  classDef safe fill:#4a5a2a,stroke:#8aaa4a,color:#f2f2f2,stroke-width:2px
+  classDef discard fill:#4a4a4a,stroke:#a6a6a6,color:#f2f2f2,stroke-width:2px
 
   class Prompt,Session core
   class Diff,Decision review
