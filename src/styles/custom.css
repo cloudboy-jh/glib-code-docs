@@ -117,20 +117,12 @@ body {
 }
 
 /*
- * Logo color mask. The same PNG is used for both themes; force it to
- * monochrome via CSS filter so it reads as foreground ink in each mode.
- * Dark theme → light logo (brightness 0 + invert 1 = pure white, then
- *   opacity tuned down to match foreground lightness).
- * Light theme → dark logo (brightness 0 = pure black, tuned to ink).
+ * Logo color mask. The logo is white letterforms with a gray 3D shadow on
+ * a transparent background — render as-is on dark. On light, invert so the
+ * white letters become dark ink while the shadow depth is preserved.
  */
-:root[data-theme='dark'] .site-title img {
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
-}
-
 :root[data-theme='light'] .site-title img {
-  filter: brightness(0);
-  opacity: 0.75;
+  filter: invert(1);
 }
 
 header.header,
