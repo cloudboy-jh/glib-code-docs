@@ -1,161 +1,75 @@
 .site-title img {
-  height: 3rem;
+  height: 2.5rem;
   width: auto;
   max-width: none;
 }
 
 /*
- * starlight-theme-black base.css hardcodes `border: 0 solid #e5e7eb` on *,
- * which ignores our --border token. Override so borders follow the theme.
- */
-* {
-  border-color: hsl(var(--border));
-}
-
-/*
  * In-house themes: minimal-dark (dark) and minimal-paper (light).
+ * Maps onto Starlight's native --sl-color-* custom property ladder.
  * HSL triplets mirror shared/src/theme/presets.ts in the glib-code app.
- * Tokens are written as raw H S% L% strings consumed by hsl(var(--token)).
  */
 :root,
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --background: 0 0% 9%;
-  --foreground: 0 0% 95%;
-  --card: 0 0% 12%;
-  --card-foreground: 0 0% 95%;
-  --popover: 0 0% 12%;
-  --popover-foreground: 0 0% 95%;
-  --primary: 0 0% 70%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 15%;
-  --secondary-foreground: 0 0% 95%;
-  --muted: 0 0% 15%;
-  --muted-foreground: 0 0% 65%;
-  --accent: 0 0% 25%;
-  --accent-foreground: 0 0% 95%;
-  --destructive: 0 65% 52%;
-  --border: 0 0% 25%;
-  --input: 0 0% 25%;
-  --ring: 0 0% 70%;
-  --code-background: 0 0% 12%;
-  --mark-background: 0 0% 25%;
 
-  --sl-color-banner-bg: 0 0% 12%;
-  --sl-color-banner-border: 0 0% 70%;
-  --sl-color-accent-low: 0 0% 15%;
-  --sl-color-accent: 0 0% 70%;
-  --sl-color-accent-high: 0 0% 95%;
-  --sl-color-white: 0 0% 95%;
-  --sl-color-gray-1: 0 0% 83%;
-  --sl-color-gray-2: 0 0% 70%;
-  --sl-color-gray-3: 0 0% 65%;
-  --sl-color-gray-4: 0 0% 42%;
-  --sl-color-gray-5: 0 0% 25%;
-  --sl-color-gray-6: 0 0% 15%;
-  --sl-color-gray-7: 0 0% 12%;
-  --sl-color-black: 0 0% 9%;
-  --sl-color-text: 0 0% 95%;
-  --sl-color-text-accent: 0 0% 70%;
-  --sl-color-bg: 0 0% 9%;
-  --sl-color-bg-nav: 0 0% 12%;
-  --sl-color-bg-sidebar: 0 0% 12%;
-  --sl-color-bg-inline-code: 0 0% 15%;
-  --sl-color-hairline: 0 0% 25%;
-  --sl-color-hairline-light: 0 0% 15%;
+  --sl-color-accent-low:    hsl(0 0% 12%);
+  --sl-color-accent:        hsl(0 0% 70%);
+  --sl-color-accent-high:   hsl(0 0% 95%);
+
+  --sl-color-white:         hsl(0 0% 95%);
+  --sl-color-gray-1:        hsl(0 0% 83%);
+  --sl-color-gray-2:        hsl(0 0% 70%);
+  --sl-color-gray-3:        hsl(0 0% 55%);
+  --sl-color-gray-4:        hsl(0 0% 35%);
+  --sl-color-gray-5:        hsl(0 0% 25%);
+  --sl-color-gray-6:        hsl(0 0% 15%);
+  --sl-color-gray-7:        hsl(0 0% 12%);
+  --sl-color-black:         hsl(0 0% 9%);
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --background: 51 33% 92%;
-  --foreground: 0 3% 6%;
-  --card: 48 100% 97%;
-  --card-foreground: 0 3% 6%;
-  --popover: 48 100% 97%;
-  --popover-foreground: 0 3% 6%;
-  --primary: 0 3% 6%;
-  --primary-foreground: 48 100% 97%;
-  --secondary: 51 21% 88%;
-  --secondary-foreground: 0 3% 6%;
-  --muted: 51 21% 88%;
-  --muted-foreground: 45 2% 33%;
-  --accent: 55 10% 79%;
-  --accent-foreground: 0 3% 6%;
-  --destructive: 3 62% 42%;
-  --border: 55 10% 79%;
-  --input: 55 10% 79%;
-  --ring: 0 3% 6%;
-  --code-background: 51 21% 88%;
-  --mark-background: 55 10% 79%;
 
-  --sl-color-banner-bg: 48 100% 97%;
-  --sl-color-banner-border: 0 3% 6%;
-  --sl-color-accent-low: 51 21% 88%;
-  --sl-color-accent: 0 3% 6%;
-  --sl-color-accent-high: 48 100% 97%;
-  --sl-color-white: 0 3% 6%;
-  --sl-color-gray-1: 45 2% 33%;
-  --sl-color-gray-2: 45 2% 45%;
-  --sl-color-gray-3: 0 3% 50%;
-  --sl-color-gray-4: 55 10% 60%;
-  --sl-color-gray-5: 55 10% 79%;
-  --sl-color-gray-6: 51 21% 88%;
-  --sl-color-gray-7: 48 100% 97%;
-  --sl-color-black: 51 33% 92%;
-  --sl-color-text: 0 3% 6%;
-  --sl-color-text-accent: 0 3% 6%;
-  --sl-color-bg: 51 33% 92%;
-  --sl-color-bg-nav: 48 100% 97%;
-  --sl-color-bg-sidebar: 48 100% 97%;
-  --sl-color-bg-inline-code: 51 21% 88%;
-  --sl-color-hairline: 55 10% 79%;
-  --sl-color-hairline-light: 51 21% 88%;
-}
+  --sl-color-accent-low:    hsl(51 21% 88%);
+  --sl-color-accent:        hsl(0 3% 6%);
+  --sl-color-accent-high:   hsl(48 100% 97%);
 
-body {
-  background: hsl(var(--sl-color-bg));
+  --sl-color-white:         hsl(0 3% 6%);
+  --sl-color-gray-1:        hsl(45 2% 20%);
+  --sl-color-gray-2:        hsl(45 2% 33%);
+  --sl-color-gray-3:        hsl(45 2% 48%);
+  --sl-color-gray-4:        hsl(55 8% 62%);
+  --sl-color-gray-5:        hsl(55 10% 79%);
+  --sl-color-gray-6:        hsl(51 21% 88%);
+  --sl-color-gray-7:        hsl(48 100% 97%);
+  --sl-color-black:         hsl(51 33% 92%);
 }
 
 /*
- * Logo color mask. The logo is white letterforms with a gray 3D shadow on
- * a transparent background — render as-is on dark. On light, invert so the
- * white letters become dark ink while the shadow depth is preserved.
+ * Logo color mask.
+ * The PNG is white letterforms with gray 3D shadow on transparent — renders
+ * as-is on dark. On light, invert to dark ink while preserving shadow depth.
  */
 :root[data-theme='light'] .site-title img {
   filter: invert(1);
-}
-
-header.header,
-.sidebar-pane {
-  background: hsl(var(--sl-color-bg-nav));
-}
-
-.right-sidebar,
-.content-panel {
-  border-color: hsl(var(--sl-color-hairline-light));
 }
 
 .mermaid {
   margin-block: 1.5rem;
   padding: 1rem;
   overflow: auto;
-  border: 1px solid hsl(var(--sl-color-gray-5));
-  border-radius: 0.75rem;
-  background: hsl(var(--sl-color-gray-6));
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  background: var(--sl-color-gray-7);
   cursor: grab;
   touch-action: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mermaid:hover {
-  border-color: hsl(var(--sl-color-accent));
-  box-shadow: 0 0 0 1px hsl(var(--sl-color-accent)), 0 8px 24px hsla(0, 0%, 70%, 0.15);
-  transform: translateY(-2px);
-}
-
-:root[data-theme='light'] .mermaid {
-  border-color: hsl(var(--sl-color-gray-5));
-  background: hsl(var(--sl-color-gray-7));
+  border-color: var(--sl-color-accent);
+  box-shadow: 0 0 0 1px var(--sl-color-accent);
 }
 
 .mermaid svg {
@@ -174,11 +88,4 @@ header.header,
   .mermaid {
     padding: 0.75rem;
   }
-}
-
-a,
-button,
-.sidebar-content a,
-.pagination a {
-  transition: color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
 }

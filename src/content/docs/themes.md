@@ -1,6 +1,6 @@
 ---
-title: In-House Themes
-description: Minimal Dark and Minimal Paper — the two curated glib-code theme presets, their tokens, application path, and diff/highlighter special-casing.
+title: Themes
+description: Minimal Dark and Minimal Paper — the two curated in-house glib-code theme presets, their tokens, and diff/highlighter behavior.
 ---
 
 glib-code ships ~30 theme presets, most of them third-party palettes (catppuccin, gruvbox, tokyo-night, etc.). Two are in-house and curated: `minimal-dark` and `minimal-paper`. They are the only presets surfaced under the "In-House Glib Themes" header in `ThemePicker.vue` and `ThemeDialog.vue`, and the only presets reachable from the left sidebar's one-tap toggle.

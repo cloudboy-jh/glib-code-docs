@@ -1,38 +1,64 @@
 ---
 title: Getting Started
-description: Start from project state, run isolated sessions, review diffs, then promote approved files.
+description: Install glib-code or run it from source, add a provider key, then open a repo and start a review-first session.
 ---
 
-1. Open or clone a repository.
-2. Choose **Diffs** or **Session** entry mode.
-3. In Diffs mode, review working tree/commit diffs.
-4. Start or continue a session.
-5. Let the agent work in isolated GitTrix workspace.
-6. Review session-produced diff.
-7. Promote approved files back to durable repo.
+## Install
+
+Grab the latest installer for your platform from the [releases page](https://github.com/cloudboy-jh/glib-code/releases/latest):
+
+| Platform | File |
+| --- | --- |
+| Windows | `glib-code-Setup-x.y.z.exe` |
+| macOS | `glib-code-x.y.z-arm64.dmg` |
+| Linux | `glib-code-x.y.z.AppImage` |
+
+## Run from source
+
+Requirements: **Bun 1.x**, **Git**, the **pi** CLI, and at least one provider API key (OpenAI, Anthropic, or any compatible provider).
+
+```bash
+bun install
+bun run dev:desktop
+```
+
+`dev:desktop` starts the API server, Vite, and Electron together. DevTools open automatically in dev.
+
+- API: `http://127.0.0.1:4273`
+- Web: `http://127.0.0.1:5173`
+
+Other entry points:
+
+```bash
+bun run dev:server   # API server only
+bun run dev:web      # Vite only
+bun run dev          # server + web (no Electron), open http://127.0.0.1:5173
+```
+
+## First session
 
 ```mermaid
 flowchart LR
-  Repo["Open/Clone Repo"] --> Mode{"Choose mode"}
-  Mode --> Diffs["Diffs mode"]
-  Mode --> Session["Session mode"]
-  Diffs --> ReviewBase["Review baseline diffs"]
-  Session --> Start["Start/continue session"]
-  ReviewBase --> Start
-  Start --> Work["Agent writes in GitTrix ephemeral workspace"]
+  Open["Open / clone repo"] --> Key["Add provider key"]
+  Key --> Start["Start session"]
+  Start --> Work["Agent edits sandbox"]
   Work --> Review["Review session diff"]
-  Review --> Promote["Promote approved files"]
-  Promote --> Durable["Durable repo"]
+  Review --> Promote["Promote accepted files"]
 
-  classDef surface fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
-  classDef core fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
+  classDef setup fill:#3a3a3a,stroke:#b3b3b3,color:#f2f2f2,stroke-width:2px
   classDef review fill:#5a5a5a,stroke:#d4d4d4,color:#f2f2f2,stroke-width:2px
-  classDef durable fill:#4a5a2a,stroke:#8aaa4a,color:#f2f2f2,stroke-width:2px
 
-  class Repo,Mode,Diffs,Session surface
-  class Start,Work core
-  class ReviewBase,Review,Promote review
-  class Durable durable
+  class Open,Key,Start,Work setup
+  class Review,Promote review
 ```
 
-Use [Review-first loop](/concepts/review-first/) for the core workflow contract.
+1. Open or clone a Git repository from the picker.
+2. Add a provider key in **Settings → Models** (you can review diffs without one, but agent sessions need it).
+3. Choose **Diff** or **Session** mode when opening the project.
+4. Start a session and prompt the agent. It works in an isolated GitTrix workspace — your real checkout stays untouched.
+5. Review the full session diff.
+6. Promote the files you accept back to durable, optionally committing and pushing.
+
+Provider keys are stored under glib-code's app config (`<configDir>/pi/auth.json`), never in your repo.
+
+See [Review-first loop](/concepts/review-first/) for the full workflow contract.

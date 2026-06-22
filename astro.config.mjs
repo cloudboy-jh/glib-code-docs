@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
-import starlightThemeBlack from 'starlight-theme-black'
 import mermaidCodeBlocks from './src/mermaid/rehype-mermaid.mjs'
 
 function minimalMermaid() {
@@ -244,11 +243,7 @@ export default defineConfig({
       expressiveCode: {
         themes: ['github-dark', 'github-light'],
       },
-      plugins: [
-        starlightThemeBlack({
-          footerText: '',
-        }),
-      ],
+
       sidebar: [
         { label: 'Introduction', link: '/' },
         { label: 'Why glib-code', link: '/why/' },
@@ -259,53 +254,11 @@ export default defineConfig({
             { label: 'Review-first loop', link: '/concepts/review-first/' },
             { label: 'Sessions', link: '/concepts/sessions/' },
             { label: 'Promote', link: '/concepts/promote/' },
-            { label: 'Provider/model authority', link: '/concepts/providers/' },
+            { label: 'Providers & models', link: '/concepts/providers/' },
             { label: 'Sandbox', link: '/concepts/sandbox/' },
           ],
         },
-        {
-          label: 'Surfaces',
-          items: [
-            { label: 'Self-host', link: '/surfaces/self-host/' },
-            { label: 'Server', link: '/surfaces/server/' },
-            { label: 'Desktop', link: '/surfaces/desktop/' },
-            { label: 'Hosted', link: '/surfaces/hosted/' },
-          ],
-        },
-        {
-          label: 'API Reference',
-          items: [
-            { label: 'Readiness & Health', link: '/api/readiness/' },
-            { label: 'Auth', link: '/api/auth/' },
-            { label: 'Providers', link: '/api/providers/' },
-            { label: 'Projects', link: '/api/projects/' },
-            { label: 'Repo', link: '/api/repo/' },
-            { label: 'Agent', link: '/api/agent/' },
-            { label: 'Sessions', link: '/api/sessions/' },
-            { label: 'Diff', link: '/api/diff/' },
-            { label: 'Git', link: '/api/git/' },
-            { label: 'FS', link: '/api/fs/' },
-            { label: 'Settings', link: '/api/settings/' },
-            { label: 'Keybindings', link: '/api/keybindings/' },
-            { label: 'Attachments', link: '/api/attachments/' },
-            { label: 'Terminal', link: '/api/terminal/' },
-            { label: 'Open in Editor', link: '/api/open-in-editor/' },
-            { label: 'Internal', link: '/api/internal/' },
-          ],
-        },
-        {
-          label: 'Guides',
-          items: [
-            { label: 'Run locally', link: '/guides/run-locally/' },
-            { label: 'GitTrix integration', link: '/guides/gittrix-integration/' },
-          ],
-        },
-        {
-          label: 'Reference',
-          items: [
-            { label: 'In-House Themes', link: '/reference/in-house-themes/' },
-          ],
-        },
+        { label: 'Themes', link: '/themes/' },
       ],
     }),
   ],
