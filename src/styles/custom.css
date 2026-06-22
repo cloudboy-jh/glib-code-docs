@@ -5,6 +5,14 @@
 }
 
 /*
+ * starlight-theme-black base.css hardcodes `border: 0 solid #e5e7eb` on *,
+ * which ignores our --border token. Override so borders follow the theme.
+ */
+* {
+  border-color: hsl(var(--border));
+}
+
+/*
  * In-house themes: minimal-dark (dark) and minimal-paper (light).
  * HSL triplets mirror shared/src/theme/presets.ts in the glib-code app.
  * Tokens are written as raw H S% L% strings consumed by hsl(var(--token)).
@@ -106,6 +114,23 @@
 
 body {
   background: hsl(var(--sl-color-bg));
+}
+
+/*
+ * Logo color mask. The same PNG is used for both themes; force it to
+ * monochrome via CSS filter so it reads as foreground ink in each mode.
+ * Dark theme → light logo (brightness 0 + invert 1 = pure white, then
+ *   opacity tuned down to match foreground lightness).
+ * Light theme → dark logo (brightness 0 = pure black, tuned to ink).
+ */
+:root[data-theme='dark'] .site-title img {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+:root[data-theme='light'] .site-title img {
+  filter: brightness(0);
+  opacity: 0.75;
 }
 
 header.header,

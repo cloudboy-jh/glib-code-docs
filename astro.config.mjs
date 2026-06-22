@@ -231,8 +231,8 @@ export default defineConfig({
     starlight({
       title: 'glib-code',
       logo: {
-        light: './glib-docs-logo.png',
-        dark: './glib-docs-logo.png',
+        light: './glib-docs-appp-logo.png',
+        dark: './glib-docs-appp-logo.png',
         alt: 'glib-code',
         replacesTitle: true,
       },
