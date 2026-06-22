@@ -12,8 +12,7 @@
   "dependencies": {
     "@astrojs/starlight": "latest",
     "astro": "latest",
-    "mermaid": "latest",
-    "starlight-theme-black": "latest"
+    "mermaid": "latest"
   },
   "devDependencies": {}
 }
