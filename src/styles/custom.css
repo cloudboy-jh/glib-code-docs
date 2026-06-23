@@ -124,6 +124,25 @@
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Content links: subtle underline slide on hover.
+ * ------------------------------------------------------------------ */
+.sl-markdown-content a {
+  text-decoration: none;
+  background-image: linear-gradient(
+    currentColor, currentColor
+  );
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease, color 0.25s ease;
+}
+
+.sl-markdown-content a:hover {
+  background-size: 100% 1px;
+  color: var(--sl-color-accent);
+}
+
 /* Prev/next pagination: shrink from big shadowed cards to compact links. */
 .pagination-links {
   gap: 0.75rem;
