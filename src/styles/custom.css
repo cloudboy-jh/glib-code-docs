@@ -143,6 +143,16 @@
   color: var(--sl-color-accent);
 }
 
+/* ------------------------------------------------------------------ *
+ * Content list items: subtle hover lift.
+ * ------------------------------------------------------------------ */
+.sl-markdown-content li {
+  transition: transform 0.15s ease;
+}
+.sl-markdown-content li:hover {
+  transform: translateX(0.25rem);
+}
+
 /* Prev/next pagination: shrink from big shadowed cards to compact links. */
 .pagination-links {
   gap: 0.75rem;
