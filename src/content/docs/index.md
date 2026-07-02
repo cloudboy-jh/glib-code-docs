@@ -46,6 +46,6 @@ The review boundary sits between the ephemeral session workspace and your durabl
 
 ## Where to go next
 
-- [Why glib-code](/why/)
-- [Getting Started](/getting-started/)
-- [Review-first loop](/concepts/review-first/)
+- [Why glib-code](/why/ "The philosophy behind review-first AI coding")
+- [Getting Started](/getting-started/ "Install, configure, and run your first session")
+- [Review-first loop](/concepts/review-first/ "How the review boundary keeps your repo safe")
